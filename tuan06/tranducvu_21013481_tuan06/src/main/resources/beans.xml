@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                               http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="class1" class="com.example.tranducvu.entities.Class">
+        <property name="classId" value="C001" />
+        <property name="className" value="DHKTPM17A" />
+    </bean>
+
+
+    <bean id="student" class="com.example.tranducvu.entities.Student">
+        <property name="id" value="S001" />
+        <property name="name" value="Tran Duc Vu" />
+        <property name="studentClass" ref="class1" />
+    </bean>
+
+    <bean id="student2" class="com.example.tranducvu.entities.Student">
+        <constructor-arg name="id" value="S002" />
+        <constructor-arg name="name" value="Le Van A" />
+        <constructor-arg name="studentClass" ref="class1" />
+    </bean>
+
+
+    <bean id="address1" class="com.example.tranducvu.entities.Address">
+        <property name="street" value="12 Nguyen Van Bao" />
+        <property name="city" value="HCM" />
+        <property name="country" value="VietNam" />
+    </bean>
+
+    <bean id="address2" class="com.example.tranducvu.entities.Address">
+        <property name="street" value="13 Nguyen Van Bao" />
+        <property name="city" value="HCM" />
+        <property name="country" value="VietNam" />
+    </bean>
+
+    <bean id="person" class="com.example.tranducvu.entities.Person">
+        <property name="name" value="Tran Duc Vu" />
+        <property name="age" value="21" />
+        <property name="addresses">
+            <list>
+                <ref bean="address1" />
+                <ref bean="address2" />
+            </list>
+        </property>
+        <property name="emails">
+            <list>
+               <value>tranducvu234@gmail.com</value>
+                <value>tranducvu234@gmail.com</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="classProperties" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+       <property name="location" value="classpath:class.properties" />
+    </bean>
+
+
+    <bean id="class2" class="com.example.tranducvu.entities.Class">
+        <property name="classId" value="DHKTPM17A" />
+        <property name="className" value="${className}" />
+    </bean>
+
+    <bean id="employee1" class="com.example.tranducvu.entities.Employee">
+        <property name="id" value="1" />
+        <property name="name" value="Tran Duc Vu" />
+        <property name="address" ref="address1" />
+    </bean>
+
+    <bean id="employee2" class="com.example.tranducvu.entities.Employee">
+        <constructor-arg name="id" value="2" />
+        <constructor-arg name="name" value="Le Van A" />
+        <constructor-arg name="address" ref="address2" />
+    </bean>
+</beans>
